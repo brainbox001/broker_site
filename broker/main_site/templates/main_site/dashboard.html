@@ -1,0 +1,192 @@
+{% load static %}
+{% load filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FolioCoins - User Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}"> 
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <div class="top-general-div">
+    <div class="user-balance">
+      <span class="balance-details">
+        {% if user.is_staff %}
+        <span class="balance-text">Balance: </span>
+        <span class="balance-fig" style="display: none;"></span>
+        <span class="balance-fig-staff">$60000</span>
+        
+        </span>
+        <span class="earnings-details">
+        <span class="earnings-text">earnings: </span>
+        <span class="earnings-fig" style="display: none;"></span>
+        <span class="earnings-fig-staff">$4075</span>
+        </span>
+        {% else %}
+        <span class="balance-text">Balance: </span>
+        
+        <span class="balance-fig"></span>
+        
+        </span>
+        <span class="earnings-details">
+        <span class="earnings-text">earnings: </span>
+        <span class="earnings-fig"></span>
+        </span>
+        {% endif %}
+        <span class="deposit-span">
+        <span class="dept-img" style="font-weight: bolder;">
+          <img src="/static/images/deposit.png" alt="deposit" style="width: 20px; vertical-align: middle;">
+        </span>
+        <a href="" class="deposit-page-link" style="text-decoration: none; color: white;">
+        <span class="dep-text" style="vertical-align: middle;">Deposit</span>
+        </a>
+        </span>
+    </div>
+    <div class="user">
+      <span class="user-info">
+        <a href="{% url 'user-account' %}" style="text-decoration: none; color: white;">
+          <span class="user-icon"><img src="{% static 'images/user-icon.gif' %}" alt="" style="width: 26px; vertical-align: middle; border-radius: 20px;"></span>
+          
+          <span class="username" style="vertical-align: middle; opacity: 0.8;"> {{ user.username }} 
+            <img src="{% static 'images/arrow-down.png' %}" alt="" style="width: 20px; vertical-align: middle; border-radius: 20px;">
+          </span> 
+        </a>  
+      </span>
+      <span class="user-ref-id">Referral ID: {{user.referral_id}}</span>
+      <span class="withdraw-btn">
+        <span class="dept-img" style="font-weight: bolder;">
+          <img src="{% static 'images/withdraw.png' %}" alt="deposit" style="width: 20px; vertical-align: middle;">
+        </span>
+        <a href="" class="deposit-page-link" style="text-decoration: none; color: white;">
+        <span class="dep-text" style="vertical-align: middle;">Withdraw</span>
+        </a>
+      </span> 
+    </div>
+  </div>
+  <div class="menu-option menu-option-smaller">
+    <div><a href="{% url 'home_page' %}">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="24px" height="24px"><g fill="#c5c3c3" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(4,4)"><path d="M32,9.00195c-0.77404,0 -1.54814,0.22285 -2.21875,0.66992l-24,16c-1.82743,1.21873 -2.32799,3.71829 -1.10937,5.54688c1.17398,1.7597 3.52289,2.25078 5.32813,1.19922v20.58203c0.00006,0.55226 0.44774,0.99994 1,1h10c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-9v-21.39453c-0.00008,-0.36876 -0.20308,-0.70755 -0.5282,-0.88155c-0.32513,-0.174 -0.71962,-0.15497 -1.02649,0.04952l-1.33594,0.89062c-0.92822,0.61971 -2.15294,0.37538 -2.77344,-0.55469c-0.61939,-0.92942 -0.37388,-2.15417 0.55469,-2.77344l24,-16c0.67477,-0.44985 1.54398,-0.44985 2.21875,0l24,16c0.92857,0.61927 1.17407,1.84402 0.55469,2.77344c-0.38951,0.58426 -1.02031,0.89063 -1.66797,0.89063c-0.38202,0 -0.76169,-0.10653 -1.10547,-0.33594l-1.33594,-0.89062c-0.30687,-0.20449 -0.70136,-0.22352 -1.02649,-0.04952c-0.32513,0.174 -0.52812,0.51279 -0.5282,0.88155v21.39453h-25v-21h10v7.73242c-0.42301,-0.27989 -0.87454,-0.47956 -1.3457,-0.55273c-0.86793,-0.13479 -1.73915,0.04704 -2.43945,0.5293c-0.70031,0.48225 -1.21484,1.32635 -1.21484,2.29102c0,0.95706 0.51922,1.79167 1.2168,2.26758c0.69758,0.47591 1.56313,0.65833 2.42969,0.5293c0.47264,-0.07038 0.92831,-0.26762 1.35352,-0.54687v5.75c-0.0051,0.36064 0.18438,0.69608 0.49587,0.87789c0.3115,0.18181 0.69676,0.18181 1.00825,0c0.3115,-0.18181 0.50097,-0.51725 0.49587,-0.87789v-6c0,-0.75289 -0.12658,-1.41286 -0.32617,-2.00195c0.2001,-0.58727 0.32617,-1.24589 0.32617,-1.99805v-9c-0.00006,-0.55226 -0.44774,-0.99994 -1,-1h-12c-0.55226,0.00006 -0.99994,0.44774 -1,1v23c0.00006,0.55226 0.44774,0.99994 1,1h27c0.55226,-0.00006 0.99994,-0.44774 1,-1v-20.60547c0.62764,0.36653 1.30938,0.60547 1.99609,0.60547c1.29234,0 2.56554,-0.63151 3.33203,-1.78125c1.21861,-1.82858 0.71806,-4.32815 -1.10937,-5.54687l-24,-16c-0.67061,-0.44708 -1.44471,-0.66992 -2.21875,-0.66992zM35.0625,40.13867c0.09295,-0.00314 0.18769,0.00274 0.2832,0.01758c0.41618,0.06463 0.83557,0.3352 1.16211,0.84961c-0.32379,0.49844 -0.74026,0.75085 -1.1543,0.8125c-0.38345,0.05709 -0.76789,-0.03944 -1.00781,-0.20312c-0.23992,-0.16368 -0.3457,-0.32779 -0.3457,-0.61523c0,-0.31184 0.11046,-0.48119 0.34766,-0.64453c0.1779,-0.1225 0.43601,-0.20739 0.71484,-0.2168z"/></g></g></svg></a></div>
+
+    <div><a href="{% url 'transaction' %}"><img src="{% static 'images/trans-history.png' %}" alt="trans-history" style="display: block;"></a></div>
+    <div><a href="{% url 'bonus' %}"><img src="{% static 'images/bonus.png' %}" alt="trans-history" style="display: block; width: 24px;"></a></div>
+    <div><a href="{% url 'loan' %}"><img src="{% static 'images/loan.png' %}" alt="trans-history" style="display: block; width: 24px;"></a></div>
+    <div><a href="{% url 'logout' %}"><img src="{% static 'images/log-out.png' %}" alt="log-out" style="display: block; width: 24px; height: 24px;"></a></div>
+
+  </div>
+  <div class="main">
+    <div class="scrollable-coin-div">
+      {% for key, value in tickers.items %}
+      <div class="coin-div">
+      <span class="coin-names" style="display: block;">
+        <img src="/static/images/{{value.2}}.png" alt="{{ value.2 }}-logo" style="width: 40px; border-radius: 20px;">
+
+        {{ key }}
+      </span>
+      <span class="coin-price" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+        ${{ value.0 }}
+      </span>
+      </div>
+      {% endfor %}
+
+    </div> 
+    
+    <div class="chart-miner">
+      <div class="miner">
+        <span class="hidden">Balance below $50.</span>
+        <svg id="mineButton" xmlns="http://www.w3.org/2000/svg" width="55" height="48">
+    
+          <rect x="0" y="0" rx="5" ry="5" width="48" height="41" fill="#3498db" />
+      
+          <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#2177b1;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
+          </linearGradient>
+          <rect x="0" y="0" rx="5" ry="5" width="48" height="15" fill="url(#topGradient)" />
+      
+         
+          <text x="22" y="21" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">Mine</text>
+      
+          <rect x="0" y="36" rx="5" ry="5" width="48" height="6" fill="rgba(0,0,0,0.3)" />
+      </svg>
+      </div>
+      <div id="countdown"></div>
+      <div class="atm-svg-smaller">
+        <svg xmlns="http://www.w3.org/2000/svg" width="135" height="75">
+          <rect x="10" y="10" width="125" height="65" rx="10" ry="10" fill="#3bccad" />
+          <rect x="20" y="15" width="20" height="15" rx="5" ry="5" stroke="#c7d1cf" stroke-width="2" fill="#3bccad" />
+          <circle cx="30" cy="22.5" r="4" stroke="#c7d1cf" stroke-width="2" fill="#3bccad" />
+
+          <line x1="23" y1="17" x2="27" y2="17" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="21.5" y1="21" x2="27" y2="21" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="21.5" y1="25" x2="27" y2="25" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="21.5" y1="29" x2="27" y2="29" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="30" y1="17" x2="37" y2="17" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="33" y1="21" x2="39" y2="21" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="33" y1="25" x2="39" y2="25" stroke="#c7d1cf" stroke-width="2" />
+          <line x1="33" y1="29" x2="39" y2="29" stroke="#c7d1cf" stroke-width="2" />
+
+          <text x="18" y="50" font-family="Arial" font-size="8" fill="white">1234 5678 9012 3456</text>
+          <text x="18" y="67.5" font-family="Arial" font-size="8" font-weight="bold" fill="white">Folio Coins</text>
+          <circle cx="100" cy="66" r="5" fill="#ed1a13" />
+          <circle cx="107" cy="66" r="5" fill="#eb6f09" />
+        </svg>
+      </div>
+    </div>
+    <div id="chart" style="width: 80%; margin: 20px 0 0 20px;"></div>
+  </div>
+  <div class="right-div" style="float: right;">
+    <div class="atm-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="270" height="150">
+        <rect x="10" y="10" width="250" height="130" rx="20" ry="20" fill="#3bccad" />
+        <rect x="20" y="25" width="30" height="20" rx="5" ry="5" stroke="#c7d1cf" stroke-width="2" fill="#3bccad" />
+        <circle cx="35" cy="34.5" r="6" stroke="#c7d1cf" stroke-width="2" fill="#3bccad" />
+        <line x1="20" y1="30" x2="30" y2="30" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="20" y1="34" x2="30" y2="34" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="20" y1="38" x2="30" y2="38" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="20" y1="41" x2="30" y2="41" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="37" y1="41" x2="48" y2="41" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="37" y1="38" x2="48" y2="38" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="37" y1="34" x2="48" y2="34" stroke="#c7d1cf" stroke-width="2" />
+        <line x1="37" y1="30" x2="48" y2="30" stroke="#c7d1cf" stroke-width="2" />
+
+        <text x="20" y="80" font-family="Arial" font-size="16" fill="white">1234 5678 9012 3456</text>
+
+        <text x="20" y="120" font-family="Arial" font-size="16" fill="white">Folio Coins</text>
+        
+        <circle cx="200" cy="110" r="13" fill="#ed1a13" />
+        <circle cx="215" cy="110" r="13" fill="#eb6f09" />
+      </svg>
+      
+    </div>
+    <div class="market-cap" style="padding-top: 10px;">
+      <div class="market-cap-title">
+        Folio Coins Market Cap
+      </div>
+      {% for key, value in tickers.items %}
+      <div class="market-cap-content">
+        <span class="market-cap-content" style="color: white;">
+          <span class="market-cap-img">
+            <img src="/static/images/{{value.2}}.png" alt="{{ value.2 }}-logo" style="width: 20px; border-radius: 20px;">
+          </span>
+          <span class="market-cap-coin-name">
+            {{ value.2|titlecase }}
+          </span>
+          <span class="market-cap-price">
+            ${{value.0}}
+          </span>
+          <span class="market-cap-percent" style="color:{{value.3}} ; font-size: smaller;">
+            {{value.4}}{{ value.1 }}
+          </span>
+        </span>   
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <script type="module" src="{% static 'scripts/dashboard.js' %}"></script>
+</body>
+</html>

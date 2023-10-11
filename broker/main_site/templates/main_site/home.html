@@ -1,0 +1,245 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"> 
+<header>
+  <div id="navbar">
+    <div class="navbar-head"></div>
+    {% if user.is_authenticated %}
+    <div class="login-style"><a href="{% url 'logout' %}" class="login-head">Logout</a></div>
+    {% else %}
+    <div class="login-style"><a href="{% url 'login' %}" class="login-head">Login</a></div>
+    {% endif %}
+  </div>
+</header>
+<section>
+<div class="body-container">
+  <div class="page-title-container">
+    <div class="page-title">Folio Coins</div>
+    <div class="title-description">Invest with Confidence, Secure Your Future.</div>
+  </div>
+
+  <hr style="width: 100%;">
+</div>
+
+</section>
+<section>
+  <div class="body-container">
+      
+      <div class="vertical-line line-reveal"></div>  
+  
+    <div class="content">
+      <div>
+        <svg class="div-svg line-reveal" id="svg1" xmlns="http://www.w3.org/2000/svg" width="42" height="30">
+          <line x1="20" y1="20" x2="30" y2="14" stroke="white" stroke-width="2" />
+          <line x1="20" y1="20" x2="30" y2="26" stroke="white" stroke-width="2" />
+          <line x1="32" y1="15" x2="42" y2="20" stroke="white" stroke-width="2" />
+          <line x1="30" y1="27" x2="42" y2="20" stroke="white" stroke-width="2" />
+        </svg>
+       </div>
+      <div class="content-text div-reveal title-show" style="font-size: 0;">Partnership</div>
+      <div class="content-text div-reveal">In Partnership with,</div>
+      <div class="content-flex div-reveal">
+        <div>
+          <img src="{% static 'images/bitkeep.png' %}" class="sponsor-logo extra-add" alt="bitkeep">
+        </div>
+        <div>
+          <img src="{% static 'images/maven.png' %}" class="sponsor-logo extra-add" alt="maven">
+        </div>
+        <div>
+          <img src="{% static 'images/fxtm.png' %}" class="sponsor-logo" alt="fxtm">
+        </div>
+        <div>
+          <img src="{% static 'images/octa-fx.png' %}" class="sponsor-logo" alt="octa-fx">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+  <section>
+  <div class="body-container">  
+      <div class="vertical-line line-reveal"></div>  
+    <div class="content">
+      <div>
+        <svg class="div-svg line-reveal" id="svg2" xmlns="http://www.w3.org/2000/svg" width="42" height="30">
+          <rect x="20" y="10" width="20" height="17" rx="2" ry="2" stroke="white" fill="none" />
+          <rect x="20" y="10" width="20" height="8" rx="2" ry="8" stroke="white" fill="none" />
+          <rect x="26" y="4.5" width="7.5" height="4.5" stroke="white" fill="none" />
+        </svg>
+        </div>
+      <div class="content-text-added div-reveal title-show" style="font-family: Arial, Helvetica, sans-serif;">Productivity</div>
+      <div class="text-added div-reveal">
+        <div><span class="added-design">Revolutionize</span> the way You manage your cryptocurrency portfolios.</div>
+        <div>Explore how you can boost your productivity, make the most out of your crypto investments with <span class="added-design">Folio Coins.</span></div>
+      </div>
+    </div>
+
+  </div>
+  </section>
+  <section>
+  <div class="body-container">
+      
+      <div class="vertical-line line-reveal"></div>  
+
+    <div class="content">
+      <div>
+        <svg class="div-svg line-reveal" id="svg3" xmlns="http://www.w3.org/2000/svg" width="42" height="30">
+          <circle cx="27" cy="12" r="10" stroke="#c7d1cf" stroke-width="2" fill="none" />
+          <circle cx="27" cy="12" r="4"  fill="#52013c" />
+        </svg> 
+      </div>
+      <div class="content-text-added title-show" style="font-family: Arial, Helvetica, sans-serif; font-size: 0;">Dashboard</div>
+      <div class="content-flex2">
+          <img src="{% static 'images/invest-db1.png' %}" class="dashbord-img dashbord-img1 div-reveal" alt="dashbord1">
+        
+          <img src="{% static 'images/invest-db2.png' %}" class="dashbord-img dashbord-img2 div-reveal" alt="dashbord3">
+        
+          <img src="{% static 'images/invest-db2.gif' %}" class="dashbord-img dashbord-img3 div-reveal" alt="dashbord2">
+        
+          <img src="{% static 'images/invest-db1.gif' %}" class="dashbord-img dashbord-img4 div-reveal" alt="dashbord4">
+    
+      </div>
+      
+    </div>
+
+  </div>
+</section>  
+<section>
+  <div class="body-container">  
+      <div class="vertical-line line-reveal"></div>  
+    <div class="content">
+      <div>
+        <svg class="div-svg-s line-reveal" id="svg4" xmlns="http://www.w3.org/2000/svg" width="42" height="30" viewBox="0 0 42 30">
+          <path
+            d="M21,25C10,17,10,1,24,8C38,1,38,19,21,25"
+            fill="none"
+            stroke="white" 
+            stroke-width="2"
+          />
+        </svg>
+        </div>
+      <div class="content-styler" style="padding: 200px 60px;">
+        <div class="title-show" style="font-size: 0;">Earnings</div>
+      <div class="styled-boarder-div">
+        <span style="padding: 7px;">Guess What?</span>
+      </div>
+      <div class="text-div">
+        <div>Up to <span style="color: rgb(248, 50, 0); font-weight: bold;">5%</span> daily withdrawal.</div>
+        <div>Invite a friend, get <span style="color:rgb(248, 50, 0) ; font-weight: bold;">10%</span> of their capital.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </section>
+  <section>
+    <div class="body-container">  
+        <div class="vertical-line line-reveal"></div>  
+      <div class="content">
+        <div>
+          <svg class="div-svg-s line-reveal" id="svg2" xmlns="http://www.w3.org/2000/svg" width="42" height="30">
+            <circle cx="27" cy="12" r="5" stroke="white" stroke-width="2" fill="none" />
+            
+            <line x1="38" y1="18" x2="32" y2="15" stroke="white" stroke-width="3" />
+            <line x1="30" y1="16" x2="28" y2="26" stroke="white" stroke-width="2" />
+          </svg> 
+          </div>
+        <div class="content-text-added div-reveal title-show" style="font-family: Arial, Helvetica, sans-serif;">Real-time Market Data</div>
+        <div class="text-added div-reveal">
+          <div>Stay updated about the ever-changing cryptocurrency market.</div>
+          <div>Folio Coins provides real-time market data, including price movements, trading volumes, and historical charts.</div>
+        </div>
+      </div>
+  
+    </div>
+    </section>
+    <section>
+      <div class="body-container">
+          
+          <div class="vertical-line line-reveal"></div>  
+    
+        <div class="content">
+          <div>
+            <svg class="div-svg line-reveal" id="svg5" xmlns="http://www.w3.org/2000/svg" width="42" height="30">
+              <line x1="20" y1="20" x2="30" y2="14" stroke="white" stroke-width="2" />
+              <line x1="20" y1="20" x2="30" y2="26" stroke="white" stroke-width="2" />
+              <line x1="32" y1="15" x2="42" y2="20" stroke="white" stroke-width="2" />
+              <line x1="30" y1="27" x2="42" y2="20" stroke="white" stroke-width="2" />
+            </svg>
+            </div>
+          <div class="content-text-added" style="font-family: Arial, Helvetica, sans-serif;"></div>
+          <div class="content-flex2 col-7">
+              <img src="{% static 'images/rt-market.png' %}" class="dashbord-img dashbord-img1 div-reveal" style="border-radius: 20px;" alt="dashbord1">
+            
+              <img src="{% static 'images/rt-market1.png' %}" class="dashbord-img dashbord-img2 line-reveal" style="border-radius: 20px;" alt="dashbord3">
+            
+              <img src="{% static 'images/rt-market.gif' %}" class="dashbord-img dashbord-img3 line-reveal" style="border-radius: 20px;" alt="dashbord2">
+
+              <img src="{% static 'images/rt-market1.gif' %}" class="dashbord-img dashbord-img4 div-reveal" style="border-radius: 20px;" alt="dashbord4">
+            
+              <img src="{% static 'images/rt-market.jpg' %}" class="dashbord-img dashbord-img4 div-reveal" style="border-radius: 20px;" alt="dashbord4">
+        
+          </div>
+          
+        </div>
+    
+      </div>
+    </section>  
+    <section>
+      <div class="body-container">  
+          <div class="vertical-line line-reveal"></div>  
+        <div class="content">
+          <div>
+            <svg class="div-svg line-reveal" id="svg6" xmlns="http://www.w3.org/2000/svg" width="42" height="30">
+              <circle cx="27" cy="12" r="10" stroke="#c7d1cf" stroke-width="2" fill="none" />
+              <circle cx="27" cy="12" r="4" stroke="#c7d1cf" stroke-width="2"  fill="none" />
+            </svg>
+            </div>
+          <div class="content-style" style="padding: 200px 60px; ">
+          <div class="content-text div-reveal title-show">
+            Risk Management
+          </div>
+          <div class="text-added div-reveal">
+            <div>Providing risk assessment tools that analyze your portfolio's diversification and exposure to different assets.</div>
+            <div>Make data-driven decisions to minimize potential losses and optimize your portfolio's performance with Folio Coins.</div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </section>
+      
+ 
+      <footer style="background-color: rgb(34, 33, 33); width: 100%;">
+        <div class="footer-flex">
+        <div class="footer-first-tag">
+        <div class="footer-head" style="color: #c0c0cc; font-weight: bolder; font-size: 30px;">
+          Folio Coins
+        </div>
+        <div class="footer-address" style="color: #adadb6; padding: 10px 6px;">
+          <img src="{% static 'images/placeholder.png' %}" alt="geo-icon">
+          <span>Maslak, Ahi Evran Caddesi 2-2, 34485, Sariyer, İstanbul, Turkey.</span>
+        </div>
+        <div class="sponsor-tag">
+      
+          <span style="color: #a8a8b6; padding: 10px 6px; font-family: 'Times New Roman', Times, serif; font-weight: bolder; font-size: 20px;">Shareholders in</span>
+          <a href="https://www.ziraatbank.com.tr/en"><img src="{% static 'images/ziraat.png' %}" class="share-img" alt="ziraat"></a>
+          <a href="https://newmont.com/"><img src="{% static 'images/newmont.png' %}" class="share-img" alt="newmont"></a>
+          
+        </div>
+        </div>
+        <div class="footer-second-tag">
+            <div><a href="/about" class="useful-links">About us</a></div>
+            <div><a href="/services" class="useful-links">Services</a></div>
+            <div><a href="/legal-terms" class="useful-links">Terms and Conditions</a></div>
+            <div><a href="/contact" class="useful-links">Contact us</a></div>
+
+        </div>
+      </div>
+      <div class="copyright" style="text-align: center; color: #a8a8b6;">©2023 Folio Coins. All rights reserved.</div>
+      </footer>
+<script src="{% static 'scripts/home.js' %}"></script>
+{% endblock %}
+   

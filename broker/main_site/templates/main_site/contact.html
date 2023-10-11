@@ -1,0 +1,21 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+<title>{% block title %}Folio Coins Contact {% endblock %}</title>
+  {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+  <div class="center-form">
+    <div class="page-title" style="text-align: center;">Contact Us </div>
+      <div class="form-element">
+        <div class="success-message">{{message}}</div>
+      <form  method="post" novalidate>
+        {% csrf_token %}
+        {{form.as_div}}
+        
+        <input type="submit" value="Submit">
+      </form>
+      </div>
+
+  </div>
+  
+
+  {% endblock %}

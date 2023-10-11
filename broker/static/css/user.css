@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  
+    }
+  
+body{
+
+  background-color: rgb(4, 0, 26);
+  margin: 0%;
+  padding: 0%;
+  color: rgb(255, 255, 255);
+}
+
+
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: transparent; 
+}
+
+
+::-webkit-scrollbar-thumb{
+  background-color: #615d5d;
+}
+
+.page-header{
+  font-size: 250%;
+  padding: 30px 0 0 20px;
+}
+
+.account-info{
+  width: 50%;
+  margin: 30px 0 0 40px;
+  color: rgb(190, 225, 255);
+  background-color: rgb(0, 0, 53);
+}
+
+.account-info div{
+  
+  padding: 30px;
+  border-bottom: 1px solid rgb(17, 0, 77);
+}
+
+.account-info div .float-right{
+  opacity: 0.6;
+  float: right;
+}
+
+.account-info div .flot-left{
+  opacity: 0.8;
+  font-weight: bolder
+}
+

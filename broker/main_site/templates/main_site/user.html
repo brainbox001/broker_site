@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio Coins - User account info</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/user.css' %}"> 
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+</head>
+<body>
+  <div class="page-header">
+    User account Info
+  </div>
+  <div class="account-info">
+    <div class="name">
+      <span class="flot-left">Name</span>
+      <span class="float-right">{{ user.first_name }} {{user.last_name}}</span>
+    </div>
+    <div class="username">
+      <span class="flot-left">Username</span>
+      <span class="float-right">{{ user.username }}</span>
+    </div>
+    <div class="email">
+      <span class="flot-left">Email</span>
+      <span class="float-right">{{ user.email }}</span>
+    </div>
+    
+    <div class="referral-id">
+      <span class="flot-left">Referral ID</span>
+      <span class="float-right">{{ user.referral_id }}</span>
+    </div>
+    <div class="date-joined">
+      <span class="flot-left">Date Joined</span>
+      <span class="float-right">{{ user.date_joined }}</span>
+    </div>
+  </div>
+  
+</body>
+</html>

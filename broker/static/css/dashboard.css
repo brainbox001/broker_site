@@ -1,0 +1,488 @@
+* {
+  box-sizing: border-box;
+
+}
+
+
+body{
+  background-color: rgb(4, 0, 26);
+  margin: 0%;
+  padding: 0%;
+}
+
+
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: transparent; 
+}
+
+
+::-webkit-scrollbar-thumb{
+  background-color: #615d5d;
+}
+
+.top-general-div{
+  width: 100%;
+  height: auto;
+  
+  padding: 20px 0 100px 0;
+ 
+}
+
+.main{
+  
+  width: 65%;
+  float: left;
+  
+  padding-top: 10px;
+}
+
+.menu-option{
+
+  width: 10%; 
+  float: left; 
+  padding-left:20px;
+}
+
+.menu-option div{
+  padding: 30px;
+}
+
+.earnings-details{
+  display: block; 
+  padding: 8px 0;
+}
+
+.scrollable-coin-div{
+  padding-right: 30px;
+  display: flex;
+  overflow-x: auto;
+  
+}
+
+.scrollable-coin-div ::-webkit-scrollbar {
+  height: 5px;
+  background-color: rgb(4, 0, 26);
+  
+}
+
+.scrollable-coin-div::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: rgb(5, 0, 31);
+}
+
+.scrollable-coin-div::-webkit-scrollbar-thumb:hover{
+  border-radius: 10px;
+  background-color: rgb(15, 0, 90);
+}
+
+.scrollable-coin-div div{
+  color: white;
+  background-image: linear-gradient(to right, rgb(0, 73, 33), rgb(0, 134, 128));
+  margin: 10px;
+  padding: 20px;
+  white-space:nowrap;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 15px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.user{
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  
+  color: rgb(255, 255, 255);
+  
+  float: right;
+  padding-right: 40px;
+}
+
+.user-info {
+  display: inline-block; 
+  vertical-align: middle; 
+}
+
+.user-balance{
+  font-family:Arial, Helvetica, sans-serif;
+  
+  color: rgb(196, 196, 196);
+  float: left;
+  padding-left: 120px;
+}
+
+.balance-fig{
+  color: white;
+  font-size: 30px;
+}
+
+.balance-fig-staff{
+  color: white;
+  
+  font-size: 30px;
+}
+
+span.deposit-span{
+ 
+  color: white;
+  font-weight: bold;
+  font-size: small;
+  background-color: rgb(0, 139, 139);
+  border: none;
+  border-radius: 10px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.user-ref-id{
+  display: block; 
+  font-size: small;
+  padding: 8px 0; 
+  color: rgb(172, 172, 172);
+  font-weight: bold;
+}
+
+.withdraw-btn{
+  margin-top: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: small;
+  background-color: rgb(0, 97, 29);
+  border: none;
+  border-radius: 10px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.atm-svg{
+  padding: 20px;
+ 
+}
+
+div.market-cap-content{
+  background-color: rgb(5, 0, 31);
+  padding: 15px 0;
+  border-bottom:1.5px solid rgb(122, 122, 122);
+}
+
+span.market-cap-content span{
+  font-size: small;
+  padding: 8px;
+
+}
+
+.market-cap-title{
+  color: rgb(196, 196, 196);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.chart-miner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.chart-miner div{
+  padding:0 0 30px 50px;
+}
+
+.atm-svg-smaller{
+  display: none;
+}
+
+#mineButton{
+  cursor: pointer;
+}
+
+#countdown{
+  border-radius: 5px;
+  padding: 13px 5px !important;
+  font-weight: bold;
+  color: white;
+}
+
+.hidden{
+  display: none;
+}
+
+.show-popup{
+  margin-bottom: 4px;
+  width: 140px;
+  display: block;
+  color: white;
+  background-color: rgb(12, 0, 70);
+  padding: 4px 4px 4px 6px;
+  border-radius: 5px;
+ 
+}
+
+
+@media only screen and (max-width: 600px)  {
+ .top-general-div{
+  border: 2px solid rgb(1, 0, 63); 
+ }
+ .user-balance{
+
+  padding-left: 10px;
+}
+
+.balance-fig{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.balance-fig-staff{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.balance-text{
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.earnings-text{
+  font-size: 12px;
+  padding-left: 6px;
+}
+
+.earnings-fig{
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.earnings-fig-staff{
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dept-img img{
+  width: 14px !important;
+}
+
+#chart{
+  display: none;
+}
+
+span.deposit-span{
+ 
+  font-weight: bold;
+  font-size: 13px;
+  
+  padding: 3px;
+ 
+}
+
+span.withdraw-btn{
+ 
+  font-weight: bold;
+  font-size: 13px;
+  
+  padding: 3px;
+ 
+}
+
+.user{
+
+  padding-right: 15px;
+}
+
+.user-icon img{
+  width: 17px !important;
+}
+
+.user-info{
+  display: block;
+  padding-bottom: 30px;
+}
+
+.username{
+  font-size: 13px !important;
+}
+
+.username img{
+  width: 13px !important;
+}
+
+.user-ref-id{
+  display: none;
+}
+
+.menu-option-smaller{
+  width: 100%;
+  display: flex;
+  background-color: rgb(0, 0, 27);
+  border: 1px solid rgb(0, 0, 42);
+  bottom: 0 !important;
+  position: fixed;
+  padding-top: 4px;
+  z-index: 3;
+}
+
+.menu-option div{
+  padding:5px 13vw 0 0  !important;
+}
+
+.main{
+  
+  width: 100%;
+}
+
+.coin-names img{
+  width: 20px !important;
+}
+
+.scrollable-coin-div div{
+  
+  padding: 10px;
+  
+  font-weight: bold;
+
+  font-size: 12px; 
+}
+
+
+
+.right-div{
+  width: 100%;
+ 
+}
+
+.atm-svg-smaller{
+  display:inline-block;
+  opacity: 0.7;
+ 
+}
+
+.atm-svg{
+  display: none;
+}
+
+}
+
+@media only screen and (min-width: 220px)  {
+  .menu-option div{
+    padding:5px 9vw 0 0  !important;
+  }
+}
+
+@media only screen and (min-width: 310px)  {
+  .menu-option div{
+    padding:5px 11vw 0 0  !important;
+  }
+}
+
+@media only screen and (min-width: 350px)  {
+  .menu-option div{
+    padding:5px 13vw 0 0  !important;
+  }
+}
+
+@media only screen and (min-width: 400px)  {
+  .menu-option div{
+    padding:5px 14vw 0 0  !important;
+  }
+}
+
+@media only screen and (min-width: 450px)  {
+  .menu-option div{
+    padding:5px 16vw 0 0  !important;
+  }
+}
+
+@media only screen and (max-width: 900px)  {
+  .top-general-div{
+    border: 2px solid rgb(1, 0, 63); 
+   }
+   .user-balance{
+  
+    padding-left: 25px;
+  }
+  
+
+  .menu-option div{
+    
+    padding:30px 0 30px 15px ;
+   }
+
+   .coin-names img{
+    width: 30px !important;
+  }
+  
+  .scrollable-coin-div div{
+    
+    padding: 10px;
+    
+    font-weight: bold;
+  
+    font-size: 18px; 
+  }
+  
+  .main{
+    width: 80%;
+ 
+  }
+}
+
+@media only screen and (min-width: 601px)  {
+  .menu-option div{
+    padding: 30px 0 30px 15px  !important;
+  }
+}
+
+@media only screen and (min-width: 900px)  {
+  .menu-option div{
+    padding: 30px   !important;
+  }
+}
+
+@media only screen and (max-height: 640px) and (max-width: 400px)  {
+  .top-general-div{
+    
+    padding: 20px 0 80px 0;
+   
+  }
+  div.market-cap-content{
+    
+    padding: 8px 0;
+    
+  }
+  
+  span.market-cap-content span{
+
+    padding: 8px !important;
+  
+  }
+  
+  .chart-miner{
+  
+    padding-top: 10px !important;
+  }
+
+  .chart-miner div{
+    padding:0 0 20px 50px !important;
+  }
+
+  .scrollable-coin-div div{
+  display: none !important;
+  }
+
+}
+
+@media only screen and (max-height: 670px) and (max-width: 400px)  {
+  .top-general-div{
+    
+    padding: 20px 0 75px 0;
+   
+  }
+
+  .chart-miner div{
+    padding:0 0 10px 50px !important;
+  }
+}

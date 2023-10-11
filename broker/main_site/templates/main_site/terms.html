@@ -1,0 +1,110 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+<title>{% block title %}Folio Coins T&C {% endblock %}</title>
+  {% block content %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/terms.css' %}"> 
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+    
+    <header class="about-header">
+    <div class="about-title page-title" style="font-size: 5vh;">Legal Terms and Conditions</div>
+   
+    </header>
+    {% if user.is_authenticated %}
+    <div class="page-welcome">Effective Date: {{ user.date_joined }}</div>
+    {% else %}
+      <div class="page-welcome">Effective Date: To be Inserted after sign-up</div>
+    {% endif %}
+
+    <div class="paragraph">
+    Please read these legal terms and conditions carefully before using the Folio Coins website and engaging in any transactions or investments through our platform. By accessing or using our Site, you agree to be bound by these Terms, which constitute a legally binding agreement between you and Folio Coins. If you do not agree with these Terms, please refrain from using our Site.
+    </div>
+
+    <div class="sub-title">Acceptance of Terms</div>
+    <div class="paragraph">
+      By using our Site, you affirm that you are at least 18 years old and have the legal capacity to enter into these Terms. You further agree to comply with all applicable laws and regulations.
+      </div>
+
+    <div class="sub-title">Investment Risks</div>
+      <div class="paragraph">
+    Cryptocurrency investments are subject to market risks, including but not limited to price volatility, regulatory changes, and security breaches. Folio Coins does not guarantee profits and shall not be held responsible for any losses incurred through your investments. You are solely responsible for conducting your own research and making informed investment decisions.
+      </div>
+
+    <div class="sub-title"> Privacy Policy</div>
+    <div class="paragraph">
+      Your use of our Site is also governed by our Privacy Policy, which outlines how we collect, use, and protect your personal information. Please review our Privacy Policy to understand our data practices.
+    </div>
+    <div class="sub-title">Account Registration</div>
+    <div class="paragraph">
+    To access certain features and services on our Site, you may be required to create an account. You agree to provide accurate and up-to-date information during the registration process and to maintain the confidentiality of your account credentials. You are responsible for all activities that occur under your account.
+    </div>
+    <div class="sub-title">Prohibited Activities</div>
+    <div class="sub-title-div">
+      <div class="div-title">You agree not to engage in any of the following activities while using our Site:</div>
+
+      <div class="paragraph">a. Violating any applicable laws or regulations.</div>
+      <div class="paragraph">b. Impersonating any individual or entity.</div>
+      <div class="paragraph">c. Attempting to gain unauthorized access to our systems or data.</div>
+      <div class="paragraph">d. Transmitting any harmful or malicious code.</div>
+      <div class="paragraph">e. Interfering with the operation of our Site.</div>
+    </div>
+
+    <div class="sub-title">Disclaimer of Warranties</div>
+    <div class="paragraph">
+      Folio Coins provides the Site on an "as-is" and "as-available" basis. We make no warranties or representations, express or implied, regarding the accuracy, reliability, or completeness of the information provided on the Site. We disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+    </div>
+    <div class="sub-title">Limitation of Liability</div>
+    <div class="paragraph">
+      In no event shall Folio Coins, its officers, directors, employees, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, arising out of your use of the Site or your investments through our platform.
+    </div>
+    <div class="sub-title">Termination</div>
+    <div class="paragraph">
+      Folio Coins reserves the right to suspend or terminate your access to the Site at any time, for any reason, without prior notice.
+    </div>
+    <div class="sub-title">Governing Law</div>
+    <div class="paragraph">
+      These Terms shall be governed by and construed in accordance with the laws governing the company, without regard to its conflict of law principles.
+    </div>
+    <div class="sub-title">Dispute Resolution</div>
+    <div class="paragraph">
+      Any disputes arising out of or relating to these Terms shall be resolved through arbitration in accordance with the rules of the company approved Arbitration Organization, and the arbitration shall take place in approved Arbitration Location.
+    </div>
+    <div class="sub-title">Changes to Terms</div>
+    <div class="paragraph">
+      Folio Coins reserves the right to modify or update these Terms at any time. Any changes will be posted on the Site, and it is your responsibility to review these Terms periodically.
+    </div>
+    <div class="sub-title">Contact Information</div>
+    <div class="paragraph">
+      If you have any questions or concerns regarding these Terms, please contact us at foliocoins@gmail.com.
+
+      By using Folio Coins, you acknowledge that you have read, understood, and agreed to these Terms and our Privacy Policy. These Terms constitute the entire agreement between you and Folio Coins regarding your use of the Site and supersede any prior agreements or understandings.
+    </div>
+    <footer style="background-color: rgb(34, 33, 33); width: 100%;">
+      <div class="footer-flex">
+      <div class="footer-first-tag">
+      <div class="footer-head" style="color: #c0c0cc; font-weight: bolder; font-size: 30px;">
+        Folio Coins
+      </div>
+      <div class="footer-address" style="color: #adadb6; padding: 10px 6px;">
+        <img src="{% static 'images/placeholder.png' %}" alt="geo-icon">
+        <span>Maslak, Ahi Evran Caddesi 2-2, 34485, Sariyer, İstanbul, Turkey.</span>
+      </div>
+      <div class="sponsor-tag">
+    
+        <span style="color: #a8a8b6; padding: 10px 6px; font-family: 'Times New Roman', Times, serif; font-weight: bolder; font-size: 20px;">Shareholders in</span>
+        <a href="https://www.ziraatbank.com.tr/en"><img src="{% static 'images/ziraat.png' %}" class="share-img" alt="ziraat"></a>
+        <a href="https://newmont.com/"><img src="{% static 'images/newmont.png' %}" class="share-img" alt="newmont"></a>
+        
+      </div>
+      </div>
+      <div class="footer-second-tag">
+          <div><a href="/about" class="useful-links">About us</a></div>
+          <div><a href="/services" class="useful-links">Services</a></div>
+          <div><a href="/legal-terms" class="useful-links">Terms and Conditions</a></div>
+          <div><a href="/contact" class="useful-links">Contact us</a></div>
+
+      </div>
+    </div>
+    <div class="copyright" style="text-align: center; color: #a8a8b6;">©2023 Folio Coins. All rights reserved.</div>
+    </footer>
+  {% endblock %}

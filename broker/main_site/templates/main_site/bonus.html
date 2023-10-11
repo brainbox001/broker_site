@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio Coins - Bonus</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+  <style>
+      * {
+  box-sizing: border-box;
+
+    }
+
+    body{
+
+      background-color: rgb(4, 0, 26);
+      margin: 0%;
+      padding: 0%;
+    }
+
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      background-color: transparent; 
+    }
+
+
+    ::-webkit-scrollbar-thumb{
+      background-color: #615d5d;
+    }
+
+    div{
+      color: rgb(102, 102, 102); 
+      font-size: large;
+      text-align: center;
+      padding-top: 300px;
+
+    }
+    div a{
+      color: white;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  {% if user.is_staff %}
+    <div><a href="#">Claim your bonus</a></div>
+  {% endif %}
+  <div>Subscribe to the Professional plan to get bonuses.</div>
+</body>
+</html>

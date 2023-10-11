@@ -1,0 +1,84 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+
+
+  <title>{% block title %}About Folio Coins {% endblock %}</title>
+  {% block content %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}"> 
+  
+  <header class="about-header">
+  <div class="about-title page-title" style="font-size: 5vh;">About Folio Coins</div>
+  <div class="address-title">Maslak, Ahi Evran Caddesi 2-2, 34485, Sariyer, İstanbul, Turkey.
+  </div>
+  </header>
+    
+    <div class="page-welcome">Welcome to Folio Coins: Redefining Your Path to Financial Prosperity</div>
+
+<div class="paragraph">Discover a world of financial opportunities with Folio Coins, the premier investment platform that has been shaping your financial dreams since 2018. Based in the heart of Istanbul, Turkey, a city where cultures collide and markets thrive, we have taken the investment industry by storm, enabling our users to invest in traditional assets, cryptocurrencies, and witness their profits soar daily. With an unwavering commitment to transparency, cutting-edge innovation, and excellence, Folio Coins stands as your steadfast companion on the journey to financial success.</div>
+
+  <div class="sub-style" style="width: 100%;">
+    <div class="sub-image-container"><img class="sub-image" src="{% static 'images/investors.jpg' %}" alt="Investor-image">
+    </div>
+    <div class="sub-style-text">
+    <div class="sub-title">Our Evolution and Expertise</div>
+      <div class="paragraph">
+      Since our establishment in 2018, Folio Coins has been unwavering in our mission to empower individuals to achieve their financial aspirations. Our journey has been marked by resilience, adaptability, and a relentless pursuit of excellence. Rooted in the vibrant and dynamic landscape of Istanbul, Turkey, we draw inspiration from its rich history while embracing a global outlook that caters to investors from all walks of life.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">A Plethora of Investment Avenues</div>
+
+  <div class="paragraph">At Folio Coins, we understand that every investor's journey is unique. That's why we present a diverse range of investment avenues designed to cater to your individual preferences and aspirations. Whether you are inclined towards traditional investment instruments or you're captivated by the allure of cryptocurrencies, our platform offers a rich array of options to suit your needs. Our team of seasoned financial experts diligently analyze opportunities in the foreign exchange and stock markets, channeling their insights to optimize returns for our cherished investors.
+  </div>
+
+  <div class="sub-title">In Partnership with <a class="bitkeep-link" href="https://bitkeep.com/en/index" target="_blank"><img class="bitkeep" src="{% static 'images/bitkeep.png' %}" alt="bitkeep-image"></a> Wallets</div>
+
+  <div class="paragraph">Folio Coins proudly joins forces with the prestigious BitKeep Wallets, a collaboration that underscores our unwavering commitment to security and innovation. With the robust backing of BitKeep Wallets, we ensure the utmost safety and integrity of your digital assets, fostering an environment where you can explore the exciting world of cryptocurrency investment with confidence. This alliance not only enhances the security of your investments but also streamlines your experience, making your journey with us remarkably seamless.
+  </div>
+
+  <div class="sub-title">Empowering Your Financial Trajectory with Crypto Loans</div>
+
+  <div class="paragraph">As part of our comprehensive suite of services, Folio Coins introduces crypto loans tailored to our esteemed investors. This pioneering feature empowers you to leverage your existing cryptocurrency holdings, granting you access to capital for further ventures while your investments continue to flourish. Our crypto loans are meticulously crafted to accommodate your financial goals and aspirations, cementing our commitment to providing holistic solutions that cater to your evolving needs.
+    </div>
+    <div class="sub-title">A Pledge to Excellence</div>
+
+    <div class="paragraph">At Folio Coins, excellence is etched into our DNA. We are dedicated to upholding a platform that thrives on transparency, security, and innovation. Our user-centric approach propels us to evolve continually, ensuring that our users remain at the forefront of investment trends and opportunities. Your success is our paramount objective, and we leave no stone unturned to ensure that each step of your investment journey is marked by professionalism, accuracy, and unwavering dedication.
+      </div>
+      <div class="paragraph">In conclusion, Folio Coins isn't merely an investment platform; we emerge as your confidants in the pursuit of financial triumph. With a spectrum of investment options, a wealth of industry expertise, and an unyielding commitment to your prosperity, we invite you to embark on a journey that promises growth, innovation, and a brighter financial future. Experience the art of intelligent investments with Folio Coins - where your success story unfolds.
+        </div>
+      </section>
+      <footer style="background-color: rgb(34, 33, 33); width: 100%;">
+        <div class="footer-flex">
+        <div class="footer-first-tag">
+        <div class="footer-head" style="color: #c0c0cc; font-weight: bolder; font-size: 30px;">
+          Folio Coins
+        </div>
+        <div class="footer-address" style="color: #adadb6; padding: 10px 6px;">
+          <img src="{% static 'images/placeholder.png' %}" alt="geo-icon">
+          <span>Maslak, Ahi Evran Caddesi 2-2, 34485, Sariyer, İstanbul, Turkey.</span>
+        </div>
+        <div class="sponsor-tag">
+      
+          <span style="color: #a8a8b6; padding: 10px 6px; font-family: 'Times New Roman', Times, serif; font-weight: bolder; font-size: 20px;">Shareholders in</span>
+          <a href="https://www.ziraatbank.com.tr/en"><img src="{% static 'images/ziraat.png' %}" class="share-img" alt="ziraat"></a>
+          <a href="https://newmont.com/"><img src="{% static 'images/newmont.png' %}" class="share-img" alt="newmont"></a>
+          
+        </div>
+        </div>
+        <div class="footer-second-tag">
+            <div><a href="/about" class="useful-links">About us</a></div>
+            <div><a href="/services" class="useful-links">Services</a></div>
+            <div><a href="/legal-terms" class="useful-links">Terms and Conditions</a></div>
+            <div><a href="/contact" class="useful-links">Contact us</a></div>
+  
+        </div>
+      </div>
+      <div class="copyright" style="text-align: center; color: #a8a8b6;">©2023 Folio Coins. All rights reserved.</div>
+      </footer>
+
+      {% endblock %}
+  <script src="{% static 'scripts/home.js' %}"></script>
+</body>
+</html>

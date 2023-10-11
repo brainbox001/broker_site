@@ -1,0 +1,10 @@
+*.env
+*.sqlite3
+venv
+requirements.txt
+settings.py
+*.code-workspace
+debug.log
+__pycache__
+migrations
+__init__.py
