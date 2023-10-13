@@ -50,3 +50,24 @@ body{
   font-weight: bolder
 }
 
+@media only screen and (max-width: 600px)  {
+  .account-info{
+    width: 95% !important;
+    margin: 30px 0 0 10px !important;
+  }
+  .account-info div{
+  
+    padding: 20px;
+    border-bottom: 1px solid rgb(17, 0, 77);
+  }
+  
+
+}
+
+@media only screen and (max-width: 750px)  {
+  .account-info{
+    width: 65%;
+    margin: 30px 0 0 20px;
+  }
+
+}

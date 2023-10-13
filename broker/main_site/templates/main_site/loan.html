@@ -6,55 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Folio Coins - Loan Offers</title>
   <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
-  <style>
-    * {
-box-sizing: border-box;
-
-  }
-
-  body{
-
-    background-color: rgb(4, 0, 26);
-    margin: 0%;
-    padding: 0%;
-  }
-
-
-  ::-webkit-scrollbar {
-    width: 20px;
-    background-color: transparent; 
-  }
-
-
-  ::-webkit-scrollbar-thumb{
-    background-color: #615d5d;
-  }
-
-  div{
-    color: rgb(102, 102, 102); 
-    font-size: large;
-    text-align: center;
-    padding-top: 300px;
-
-  }
-
-  button{
-    color: white;
-    background-color: rgb(0, 146, 19);
-    border: none;
-    padding: 6px;
-    border-radius: 5px;
-  }
-</style>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/loan.css' %}">
 </head>
 <body>
   {% if user.is_staff %}
-  <div> 
-    <span> You're eligible for loans</span>
-    <button>Get started</button>
-  </div>
+  <div class="details">
+    <div class="details-a">
+      <span>
+        Loan status
+      </span>
+      <span class="right">
+        Owing
+      </span>
+    </div> 
+    <div class="details-a">
+      <span>
+        Amount
+      </span>
+      <span class="right">
+        $250000
+      </span>
+    </div> 
 
-  {% endif %}
+    <div class="details-a">
+      <span>
+        Type
+      </span>
+      <span class="right">
+        Mortgage
+      </span>
+    </div>
+    <div class="details-a">
+      <span>
+        Interest rate
+      </span>
+      <span class="right">
+        10%
+      </span>
+    </div>
+    <div class="details-a">
+      <span>
+        Billing Cycle
+      </span>
+      <span class="right">
+        Yearly
+      </span>
+    </div>
+    <div class="details-a">
+      <span>
+        Loan Payback due in
+      </span>
+      <span class="right">
+        4 months
+      </span>
+    </div>  
+  </div>
+  {% else %}
   <div>Subscribe to the Professional plan to get loan Offers.</div>
+  {% endif %}
+ 
 </body>
 </html>
