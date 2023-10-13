@@ -10,19 +10,23 @@
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}"> 
   </head>
   <body>
-
-    
     <div class="verify-container">
       <div class="verify-title">Verify Email</div>
-      <div class="errorcode">{{message}}</div>
+      <div id="error-message" class="errorcode">{{ message }}</div>
       <div class="verify-form">
-        <form method="post" novalidate>
+        <form method="post" novalidate id="verify-form">
           {% csrf_token %}
-          {{form.as_div}}
-          <input type="submit" value="Verify">
+          {{ form.as_div }}
+          <input type="submit" value="Verify" id="verify-button">
         </form>
       </div>
     </div>
-    
+    <script>
+      // Define a JavaScript variable to store the endpoint
+      const verifyEmailEndpoint = "{% url 'verify_email' user_id=user_id referral_id=referral_id %}";
+    </script>
+    <script src="{% static 'scripts/verify.js' %}"></script>
+      
+    </script>
   </body>
 </html>
