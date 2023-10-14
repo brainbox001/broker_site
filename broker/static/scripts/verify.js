@@ -3,11 +3,13 @@
     const verifyForm = document.getElementById('verify-form');
     const verifyButton = document.getElementById('verify-button');
     const errorMessage = document.getElementById('error-message');
+    const loader = document.getElementById('loader');
 
 
     verifyForm.addEventListener('submit', function (e) {
         e.preventDefault();
         
+        loader.style.display = 'block';
         const formData = new FormData(verifyForm);
         
         const xhr = new XMLHttpRequest();
@@ -25,6 +27,7 @@
             } else {
                 // Handle other HTTP status codes if needed
             }
+            loader.style.display = 'none';
         };
 
         xhr.send(formData);
