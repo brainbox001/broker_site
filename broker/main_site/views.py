@@ -3,7 +3,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from secrets import token_urlsafe
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomUserVerifyEmail, ContactForm
 from .models import CustomUser, Referral
@@ -145,12 +145,14 @@ def register(request):
             code = ''.join(str(number) for number in choices(VERIFICATION_CODE_NUMBERS, k=6))
             
             referred_by = request.POST.get('referred_by').title()
-            referrer_id = 'default'
+
             if referred_by != '':
               try:
             
                 referrer = CustomUser.objects.get(referral_id=referred_by)
                 referrer_id = referrer.referral_id
+               
+                request.session['referrer_id'] = referrer_id
               except CustomUser.DoesNotExist:
                 not_found = f'Referrer with ID "{referred_by}" not found!!'
                 return render(request, 'registration/sign_up.html', {
@@ -165,12 +167,13 @@ def register(request):
                 'error_message': error_message
                 })
             
-            user.verification_code = code
-            user.verification_token = token_urlsafe(32)
+            
+
             user.verification_token_created_at = timezone.now()
             user.save()
+            request.session['code'] = code
             user_id = user.id
-              
+            request.session['user_id'] = user_id
             
             subject = 'Verify your email'
             message = f'Your verification code is {code}'
@@ -178,60 +181,56 @@ def register(request):
             recipient_list = [user.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
             
-            return redirect(f'verify_email', user_id=user_id, token=user.verification_token, referral_id=referrer_id)
+            return redirect(f'verify_email')
 
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/sign_up.html', {'form': form})
 
 
-def verify_email(request, user_id, token, referral_id):
+def verify_email(request):
+    user_id = request.session['user_id']
     user = get_object_or_404(CustomUser, pk=user_id) 
-
-    if request.user.is_authenticated or user.is_verified:
-        return redirect('dashboard')
-
-    
-    if user.verification_token == None:
-      return redirect('home')
-
-    timer_limit = user.verification_token_created_at + timezone.timedelta(minutes=50)
-    
-    if timezone.now() > timer_limit:
-      user.verification_token = None
-      user.save()
-      
- 
-  
     if request.method == 'POST':
         form = CustomUserVerifyEmail(request.POST)
         if form.is_valid():
-          entered_code = form.cleaned_data['verification_code']
-          
-          if entered_code == user.verification_code:
-        
-              user.is_verified = True
-              user.is_active = True
-              user.verification_token = None
-              user.save()
+            gen_code = request.session['code']
+            entered_code = form.cleaned_data['verification_code']
+            if entered_code == gen_code:
+                user.is_verified = True
+                user.is_active = True
+                user.save()
+                del request.session['code']
 
-              if referral_id != 'default':
-                referrer = CustomUser.objects.get(referral_id=referral_id)
-                Referral.objects.create(referred_user=user, referrer=referrer)
-
-              login(request, user)
-              
-              return redirect('dashboard') 
-          else:
-            message = 'Incorrect Verification code'
-            return render(request, 'registration/verify.html', {
-              'form': form,
-              'message': message
-              })
+                if 'referrer_id' in request.session:
+                    referral_id = request.session['referrer_id']
+                    referrer = CustomUser.objects.get(referral_id=referral_id)
+                    Referral.objects.create(referred_user=user, referrer=referrer)
+                    del request.session['referrer_id']
+                
+                del request.session['user_id']
+                login(request, user)
+                response_data = {
+                    'success': True,
+                    'redirect_url': 'dashboard'  
+                }
+                return JsonResponse(response_data)
+            else:
+                message = 'Incorrect Verification code'
+                response_data = {
+                    'success': False,
+                    'message': message
+                }
+                return JsonResponse(response_data)
+        else:
+            response_data = {
+                'success': False,
+                'message': 'Form is not valid'
+            }
+            return JsonResponse(response_data)
     else:
         form = CustomUserVerifyEmail()
-
-    return render(request, 'registration/verify.html', {'form': form})
+        return render(request, 'registration/verify.html', {'form': form})
 
 
 def login_view(request):

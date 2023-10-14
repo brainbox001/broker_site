@@ -15,7 +15,7 @@ urlpatterns = [
     path('user-account', user_account, name='user-account'),
     path('dashboard', dashboard_view, name='dashboard'),
     path('sign-up', register, name='sign-up'),
-    path('verify_email/<int:user_id>/<str:token>/<str:referral_id>', verify_email, name='verify_email'),
+    path('verify_email/', verify_email, name='verify_email'),
     path('login', login_view, name='login'),
     path('logout', logout_view, name='logout'),
 ]

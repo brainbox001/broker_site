@@ -31,8 +31,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     username = models.CharField(max_length=60, unique=True)
-    verification_code = models.CharField(max_length=10, blank=True, null=True)
-    verification_token = models.CharField(max_length=100, blank=True, null=True)
+
+    
     verification_token_created_at = models.DateTimeField(null=True, blank=True)
     referral_id = models.CharField(max_length=10, unique=True)
     is_verified = models.BooleanField(default=False)
