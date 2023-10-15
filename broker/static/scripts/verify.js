@@ -1,7 +1,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     const verifyForm = document.getElementById('verify-form');
-    const verifyButton = document.getElementById('verify-button');
+  
     const errorMessage = document.getElementById('error-message');
     const loader = document.getElementById('loader');
 

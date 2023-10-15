@@ -23,11 +23,11 @@
 <div class="register-form-container">
   <div class="form-title">Register with Folio Coins Today</div>
   
-    <div class="errorcode">{{not_found}}</div>
-    <div class="errorcode">{{error_message}}</div>
+    <div class="errorcode" id="errorCode"></div>
+
   
   <div class="register-form">
-    <form method="post" id="myForm" novalidate>
+    <form method="post" id="registerForm" novalidate>
     {% csrf_token %}
     {{ form.as_div }}
 
@@ -38,6 +38,9 @@
     
     <input type="submit" value="Register" id="submitButton">
 </form>
+  </div>
+  <div class="overlay" id="loader">
+    <div class="loader"></div>
   </div>
   <p class="question">Already have an account? <a href="{% url 'login' %}">Login</a></p>
 </div>

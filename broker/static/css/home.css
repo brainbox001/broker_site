@@ -98,18 +98,9 @@ body{
 
 .page-title-container{
   padding-right: 40px;
-  animation: title-glow 4s ease-in-out infinite alternate;
+ 
 }
 
-@-webkit-keyframes title-glow {
-  from {
-    text-shadow: 0 0 5px #f5ebeb, 0 0 20px #f5f3f3, 0 0 15px #14171d, 0 0 20px #000000, 0 0 25px #232329, 0 0 30px #101011, 0 0 35px #a5aaad;
-  }
-  
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 15px #ffffff, 0 0 20px #3b3e42, 0 0 25px #31313d, 0 0 30px #fefdff, 0 0 70px #000000, 0 0 40px #6a6d6e;
-  }
-}
 
 .div-svg{
   margin: 1px;

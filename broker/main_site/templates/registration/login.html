@@ -21,15 +21,17 @@
   <div class="login-form-container">
     <div class="form-title">Log in to Folio Coins</div>
     
-      <div class="errorcode">{{message}}</div>
+      <div id="errorcode"></div>
       <div class="login-form">
-        <form method="post" novalidate>
+        <form method="post" novalidate id="loginForm">
           {% csrf_token %} 
           {{form.as_div}}
           <input type="submit" value="Login">
         </form>    
     </div>
-
+    <div class="overlay" id="loader">
+      <div class="loader"></div>
+    </div>
     <div class="text-with-lines">
       <span class="line"></span>
       <span class="text">Don't have and Account?</span>
@@ -37,6 +39,6 @@
     </div>
     <div class="sign-up"> <a href="{% url 'sign-up' %}">Sign Up</a></div>
     </div>
-
+    <script src="{% static 'scripts/login.js' %}"></script>
   </body>
 </html>

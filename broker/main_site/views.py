@@ -1,15 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import AnonymousUser
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import JsonResponse
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomUserVerifyEmail, ContactForm
 from .models import CustomUser, Referral
 from random import choices
-from django.http import HttpResponse
-from django.utils import timezone
 from .currencies import get_tickers
 import json
 
@@ -113,24 +109,17 @@ def dashboard_view(request):
 
 
 def register(request):
+
+    if 'user_data' in request.session:
+      del request.session['user_data']
+  
     if request.user.is_authenticated:
-        return redirect('dashboard')
+       
+       return redirect('dashboard')
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-
-        if not form.is_valid():
-            email = request.POST.get('email')
-            username = request.POST.get('username')
-            try:
-              unverified_user = CustomUser.objects.get(email=email)
-              
-              if unverified_user.is_verified == False:
-                unverified_user.delete()
-                return redirect('sign-up')
-            except CustomUser.DoesNotExist:
-              pass
-                      
+                    
        
         if form.is_valid():
                 
@@ -139,41 +128,48 @@ def register(request):
             user.referral_id = form.cleaned_data['referral_id'].title()
             user.first_name = form.cleaned_data['first_name'].title()
             user.last_name = form.cleaned_data['last_name'].title()
-             
-            user.set_password(form.cleaned_data['password'])
+            user.username = form.cleaned_data['username']
+            user.password = form.cleaned_data['password']
             
             code = ''.join(str(number) for number in choices(VERIFICATION_CODE_NUMBERS, k=6))
             
             referred_by = request.POST.get('referred_by').title()
+
+            request.session['user_data'] = {
+                'email': user.email,
+                'password': user.password,
+                'referral_id': user.referral_id,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'username': user.username,
+                'code': code
+            }
 
             if referred_by != '':
               try:
             
                 referrer = CustomUser.objects.get(referral_id=referred_by)
                 referrer_id = referrer.referral_id
-               
-                request.session['referrer_id'] = referrer_id
+
+                request.session['user_data']['referrer_id'] = referrer_id
+                
               except CustomUser.DoesNotExist:
                 not_found = f'Referrer with ID "{referred_by}" not found!!'
-                return render(request, 'registration/sign_up.html', {
-                  'form': form,
-                  'not_found': not_found
-                  })
+                response_data = {
+                    'success': False,
+                    'not_found': not_found  
+                }
+                return JsonResponse(response_data)
+
 
             if CustomUser.objects.filter(referral_id=user.referral_id).exists():
               error_message = f'Referral ID "{user.referral_id}" already in use. Please choose a different one.'
-              return render(request, 'registration/sign_up.html', {
-                'form': form, 
-                'error_message': error_message
-                })
-            
-            
-
-            user.verification_token_created_at = timezone.now()
-            user.save()
-            request.session['code'] = code
-            user_id = user.id
-            request.session['user_id'] = user_id
+              response_data = {
+                    'success': False,
+                    'error_message': error_message 
+                }
+              return JsonResponse(response_data)
+          
             
             subject = 'Verify your email'
             message = f'Your verification code is {code}'
@@ -181,34 +177,58 @@ def register(request):
             recipient_list = [user.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
             
-            return redirect(f'verify_email')
+            response_data = {
+                    'success': True,
+                }
+            return JsonResponse(response_data)
+      
+        else:
+          errors = {}
+          for field in form.errors:
+              errors[field] = form.errors[field][0]
+          return JsonResponse({'success': False, 'errors': errors})
+   
 
     else:
-        form = CustomUserCreationForm()
+      form = CustomUserCreationForm()
     return render(request, 'registration/sign_up.html', {'form': form})
 
 
 def verify_email(request):
-    user_id = request.session['user_id']
-    user = get_object_or_404(CustomUser, pk=user_id) 
+
+    if 'user_data' not in request.session:
+      
+        return redirect('sign-up') 
+
+
     if request.method == 'POST':
+        
+        user_data = request.session['user_data']
+   
+        user = CustomUser(email=user_data['email'])
+        user.referral_id = user_data['referral_id']
+        user.first_name = user_data['first_name']
+        user.last_name = user_data['last_name']
+        user.username = user_data['username']
+        user.set_password(user_data['password'])
+
         form = CustomUserVerifyEmail(request.POST)
         if form.is_valid():
-            gen_code = request.session['code']
+            gen_code = user_data['code']
             entered_code = form.cleaned_data['verification_code']
             if entered_code == gen_code:
                 user.is_verified = True
                 user.is_active = True
                 user.save()
-                del request.session['code']
+                
 
-                if 'referrer_id' in request.session:
-                    referral_id = request.session['referrer_id']
+                if 'referrer_id' in user_data:
+                    referral_id = user_data['referrer_id']
                     referrer = CustomUser.objects.get(referral_id=referral_id)
                     Referral.objects.create(referred_user=user, referrer=referrer)
-                    del request.session['referrer_id']
+                   
                 
-                del request.session['user_id']
+                del request.session['user_data']
                 login(request, user)
                 response_data = {
                     'success': True,
@@ -229,8 +249,8 @@ def verify_email(request):
             }
             return JsonResponse(response_data)
     else:
-        form = CustomUserVerifyEmail()
-        return render(request, 'registration/verify.html', {'form': form})
+      form = CustomUserVerifyEmail()
+      return render(request, 'registration/verify.html', {'form': form})
 
 
 def login_view(request):
@@ -251,14 +271,25 @@ def login_view(request):
               if user.is_verified:
                 login(request, user)
                 
-                return redirect('dashboard')
+                response_data = {
+                    'success': True,
+                }
+                return JsonResponse(response_data)
 
             else:
                 message = 'Invalid email or password.'
-                return render(request, 'registration/login.html', {
-                  'form': form,
-                  'message': message
-                  })
+                response_data = {
+                    'success': False,
+                    'message': message
+                }
+                return JsonResponse(response_data)
+
+        else:
+          response_data = {
+                'success': False,
+                'message': "A field can't be empty!"
+            }
+          return JsonResponse(response_data)
  
     else:
         form = CustomUserLoginForm()
@@ -273,3 +304,5 @@ def logout_view(request):
 
   return redirect('home')
   
+
+

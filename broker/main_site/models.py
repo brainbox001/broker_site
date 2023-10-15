@@ -32,8 +32,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=60)
     username = models.CharField(max_length=60, unique=True)
 
-    
-    verification_token_created_at = models.DateTimeField(null=True, blank=True)
+
     referral_id = models.CharField(max_length=10, unique=True)
     is_verified = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
